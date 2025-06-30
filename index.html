@@ -1,189 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Frankie's Tailoring Wheel of Discounts 🎡</title>
-<style>
-  body {
-    background-color: #222;
-    color: white;
-    font-family: 'Arial Black', 'Impact', sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    justify-content: center;
-  }
-  h1 {
-    font-size: 3.5rem;
-    margin: 20px 0 40px;
-    text-align: center;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
-  }
-  .wheel-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-  #wheel {
-    border-radius: 50%;
-    box-shadow: 0 0 15px 4px #ff6b6baa;
-    background-color: #111;
-  }
-  #spinBtn {
-    font-size: 1.5rem;
-    padding: 10px 25px;
-    cursor: pointer;
-    border: none;
-    border-radius: 8px;
-    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-    color: #222;
-    font-weight: bold;
-    transition: background 0.3s ease;
-  }
-  #spinBtn:hover {
-    background: linear-gradient(45deg, #ffd93d, #ff6b6b);
-  }
-  #winnerPopup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #333;
-    border-radius: 15px;
-    padding: 30px 40px;
-    box-shadow: 0 0 20px #ff6b6b;
-    text-align: center;
-    z-index: 100;
-  }
-  #winnerPopup.hidden {
-    display: none;
-  }
-  #winnerPopup h2 {
-    margin-bottom: 25px;
-    font-size: 2rem;
-    color: #ffd93d;
-    text-shadow: 1px 1px 4px #ff6b6b;
-  }
-  #restartBtn {
-    font-size: 1.2rem;
-    padding: 8px 20px;
-    cursor: pointer;
-    border: none;
-    border-radius: 10px;
-    background-color: #4d96ff;
-    color: white;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-  }
-  #restartBtn:hover {
-    background-color: #6bcB77;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Frankie's Tailoring Wheel of Discounts 🎡</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<h1>Frankie's Tailoring Wheel of Discounts</h1>
+  <h1>Frankie's Tailoring Wheel of Discounts</h1>
 
-<div class="wheel-container">
-  <canvas id="wheel" width="500" height="500"></canvas>
-  <button id="spinBtn">SPIN</button>
-</div>
+  <div class="wheel-container">
+    <canvas id="wheel" width="500" height="500"></canvas>
+    <button id="spinBtn">SPIN</button>
+  </div>
 
-<div id="winnerPopup" class="hidden">
-  <h2>🎉 Congrats, <span id="winnerName"></span>! 🎉</h2>
-  <button id="restartBtn">Spin Again</button>
-</div>
+  <div id="winnerPopup" class="hidden">
+    <h2>🎉 Congrats, <span id="winnerName"></span>! 🎉</h2>
+    <button id="restartBtn">Spin Again</button>
+  </div>
 
-<script>
-  const names = ["5% Discount", "10% Discount", "15% Discount", "20% Discount", "25% Discount"];
-  const wheel = document.getElementById("wheel");
-  const ctx = wheel.getContext("2d");
-  const spinBtn = document.getElementById("spinBtn");
-  const winnerPopup = document.getElementById("winnerPopup");
-  const winnerName = document.getElementById("winnerName");
-  const restartBtn = document.getElementById("restartBtn");
-
-  const colors = ["#FF6B6B", "#FFD93D", "#6BCB77", "#4D96FF", "#D67BFF"];
-  const sliceAngle = (2 * Math.PI) / names.length;
-  let angle = 0;
-  let spinning = false;
-
-  function drawWheel() {
-    for (let i = 0; i < names.length; i++) {
-      ctx.beginPath();
-      ctx.fillStyle = colors[i % colors.length];
-      ctx.moveTo(250, 250);
-      ctx.arc(250, 250, 250, i * sliceAngle, (i + 1) * sliceAngle);
-      ctx.fill();
-
-      ctx.save();
-      ctx.translate(250, 250);
-      ctx.rotate(i * sliceAngle + sliceAngle / 2);
-      ctx.textAlign = "right";
-      ctx.fillStyle = "#fff";
-      ctx.font = "20px Arial";
-      ctx.fillText(names[i], 220, 10);
-      ctx.restore();
-    }
-  }
-
-  drawWheel();
-
-  function easeOut(t) {
-    return t * (2 - t);
-  }
-
-  spinBtn.addEventListener("click", () => {
-    if (spinning) return;
-    spinning = true;
-
-    const totalSpinTime = 4000;
-    const start = performance.now();
-    const spins = Math.floor(Math.random() * 3) + 3;
-    const finalAngle = spins * 2 * Math.PI + Math.random() * 2 * Math.PI;
-
-    function animate(now) {
-      let elapsed = now - start;
-      let progress = Math.min(elapsed / totalSpinTime, 1);
-      let easedProgress = easeOut(progress);
-      angle = finalAngle * easedProgress;
-
-      ctx.clearRect(0, 0, 500, 500);
-      ctx.save();
-      ctx.translate(250, 250);
-      ctx.rotate(angle);
-      ctx.translate(-250, -250);
-      drawWheel();
-      ctx.restore();
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        showWinner();
-        spinning = false;
-      }
-    }
-
-    requestAnimationFrame(animate);
-  });
-
-  function showWinner() {
-    let normalizedAngle = angle % (2 * Math.PI);
-    let winningIndex = Math.floor((names.length - (normalizedAngle / sliceAngle)) % names.length);
-    winnerName.textContent = names[winningIndex];
-    winnerPopup.classList.remove("hidden");
-  }
-
-  restartBtn.addEventListener("click", () => {
-    winnerPopup.classList.add("hidden");
-  });
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
