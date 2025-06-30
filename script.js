@@ -24,8 +24,10 @@ window.onload = function() {
       ctx.translate(250, 250);
       ctx.rotate(i * sliceAngle + sliceAngle / 2);
       ctx.textAlign = "right";
-      ctx.fillStyle = "#fff";
-      ctx.font = "20px Arial";
+      ctx.fillStyle = "#ffd93d"; // Gold-ish text color for visibility
+      ctx.font = "bold 22px Arial";
+      ctx.shadowColor = "rgba(0,0,0,0.7)";
+      ctx.shadowBlur = 4;
       ctx.fillText(names[i], 220, 10);
       ctx.restore();
     }
@@ -75,10 +77,4 @@ window.onload = function() {
     let normalizedAngle = angle % (2 * Math.PI);
     let winningIndex = Math.floor((names.length - (normalizedAngle / sliceAngle)) % names.length);
     winnerName.textContent = names[winningIndex];
-    winnerPopup.classList.remove("hidden");
-  }
-
-  restartBtn.addEventListener("click", () => {
-    winnerPopup.classList.add("hidden");
-  });
-};
+    winnerPopup.classList.remove(
