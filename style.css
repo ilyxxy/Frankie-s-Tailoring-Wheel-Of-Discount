@@ -33,7 +33,7 @@ h1 {
 
 #wheel {
   border-radius: 50%;
-  box-shadow: 0 0 15px 4px #ff6b6baa;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.7); /* Blackish glow */
   background-color: #111;
 }
 
@@ -43,14 +43,14 @@ h1 {
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+  background: linear-gradient(45deg, #0b1d3a, #f9f9f9); /* Navy to white */
   color: #222;
   font-weight: bold;
   transition: background 0.3s ease;
 }
 
 #spinBtn:hover {
-  background: linear-gradient(45deg, #ffd93d, #ff6b6b);
+  background: linear-gradient(45deg, #f9f9f9, #0b1d3a);
 }
 
 #winnerPopup {
