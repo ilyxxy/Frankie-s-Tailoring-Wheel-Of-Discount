@@ -6,8 +6,9 @@ window.onload = function() {
   const winnerPopup = document.getElementById("winnerPopup");
   const winnerName = document.getElementById("winnerName");
   const restartBtn = document.getElementById("restartBtn");
+  const formPopup = document.getElementById("formPopup");
+  const formDoneBtn = document.getElementById("formDoneBtn");
 
-  // Updated colors array with new color instead of yellow slice
   const colors = ["#0b1d3a", "#d4af37", "#2c3e50", "#a1b5d8", "#333333"];
   const sliceAngle = (2 * Math.PI) / names.length;
   let angle = 0;
@@ -25,7 +26,7 @@ window.onload = function() {
       ctx.translate(250, 250);
       ctx.rotate(i * sliceAngle + sliceAngle / 2);
       ctx.textAlign = "right";
-      ctx.fillStyle = "#ffd93d"; // Gold text color
+      ctx.fillStyle = "#ffd93d";
       ctx.font = "bold 22px Arial";
       ctx.shadowColor = "rgba(0,0,0,0.7)";
       ctx.shadowBlur = 4;
@@ -83,5 +84,9 @@ window.onload = function() {
 
   restartBtn.addEventListener("click", () => {
     winnerPopup.classList.add("hidden");
+  });
+
+  formDoneBtn.addEventListener("click", () => {
+    formPopup.style.display = "none";
   });
 };
