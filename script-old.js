@@ -7,7 +7,7 @@ window.onload = function() {
   const winnerName = document.getElementById("winnerName");
   const restartBtn = document.getElementById("restartBtn");
 
-  const colors = ["#FF6B6B", "#FFD93D", "#6BCB77", "#4D96FF", "#D67BFF"];
+  const colors = ["#0b1d3a", "#d4af37", "#2c3e50", "#f7e7ce", "#333333"];
   const sliceAngle = (2 * Math.PI) / names.length;
   let angle = 0;
   let spinning = false;
@@ -24,8 +24,10 @@ window.onload = function() {
       ctx.translate(250, 250);
       ctx.rotate(i * sliceAngle + sliceAngle / 2);
       ctx.textAlign = "right";
-      ctx.fillStyle = "#fff";
-      ctx.font = "20px Arial";
+      ctx.fillStyle = "#ffd93d"; // Gold text color
+      ctx.font = "bold 22px Arial";
+      ctx.shadowColor = "rgba(0,0,0,0.7)";
+      ctx.shadowBlur = 4;
       ctx.fillText(names[i], 220, 10);
       ctx.restore();
     }
@@ -79,6 +81,4 @@ window.onload = function() {
   }
 
   restartBtn.addEventListener("click", () => {
-    winnerPopup.classList.add("hidden");
-  });
-};
+    winnerPopup.classList.add("hidd
