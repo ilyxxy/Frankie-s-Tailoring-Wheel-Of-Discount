@@ -81,4 +81,6 @@ window.onload = function() {
   }
 
   restartBtn.addEventListener("click", () => {
-    winnerPopup.classList.add("hidd
+    winnerPopup.classList.add("hidden");
+  });
+};
