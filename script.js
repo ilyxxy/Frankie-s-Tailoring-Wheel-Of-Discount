@@ -1,5 +1,12 @@
 window.onload = function() {
-  const names = ["5% Discount", "10% Discount", "15% Discount", "20% Discount", "25% Discount"];
+  // Weighted slices: more repeats = higher chance
+  const names = [
+    "5% Discount", "5% Discount", "5% Discount", "5% Discount",
+    "10% Discount", "10% Discount", "10% Discount",
+    "15% Discount", "15% Discount",
+    "20% Discount",
+    "25% Discount"
+  ];
   const wheel = document.getElementById("wheel");
   const ctx = wheel.getContext("2d");
   const spinBtn = document.getElementById("spinBtn");
@@ -9,7 +16,15 @@ window.onload = function() {
   const formPopup = document.getElementById("formPopup");
   const formDoneBtn = document.getElementById("formDoneBtn");
 
-  const colors = ["#0b1d3a", "#d4af37", "#2c3e50", "#a1b5d8", "#333333"];
+  // Colors array - make sure it has enough colors for all slices
+  const colors = [
+    "#0b1d3a", "#0b1d3a", "#0b1d3a", "#0b1d3a",       // 4 slices for 5%
+    "#d4af37", "#d4af37", "#d4af37",                  // 3 slices for 10%
+    "#a1b5d8", "#a1b5d8",                             // 2 slices for 15%
+    "#333333",                                        // 1 slice for 20%
+    "#222222"                                         // 1 slice for 25%
+  ];
+
   const sliceAngle = (2 * Math.PI) / names.length;
   let angle = 0;
   let spinning = false;
