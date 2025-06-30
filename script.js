@@ -7,7 +7,7 @@ window.onload = function() {
   const winnerName = document.getElementById("winnerName");
   const restartBtn = document.getElementById("restartBtn");
 
-  const colors = ["#FF6B6B", "#FFD93D", "#6BCB77", "#4D96FF", "#D67BFF"];
+  const colors = ["#0b1d3a", "#d4af37", "#2c3e50", "#f7e7ce", "#333333"];
   const sliceAngle = (2 * Math.PI) / names.length;
   let angle = 0;
   let spinning = false;
