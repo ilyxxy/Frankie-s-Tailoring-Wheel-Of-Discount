@@ -90,6 +90,14 @@ spinButton.onclick = () => {
     resultText.textContent = `🎉 You got: ${result} 🎉`;
     popupPrize.textContent = result;
     popup.classList.remove("hidden");
+
+    // Confetti burst
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+
     spinButton.style.pointerEvents = "auto";
   }, 5200);
 };
