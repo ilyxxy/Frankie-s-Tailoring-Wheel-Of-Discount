@@ -5,17 +5,45 @@ body {
   background-size: cover;
   font-family: 'Poppins', sans-serif;
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
+}
+
+/* Form Section */
+.form-section {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+#continueButton {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-color: #1a1a2e;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#continueButton:hover {
+  background-color: #2f3542;
+}
+
+/* Hide initially */
+.hidden {
+  display: none;
 }
 
 .overlay {
   text-align: center;
   backdrop-filter: blur(4px);
   padding-top: 20px;
+  animation: fadeUp 1s ease;
 }
 
 h1 {
@@ -25,11 +53,6 @@ h1 {
   text-shadow: 2px 2px 5px black;
   margin-bottom: 30px;
   animation: fadeUp 1.2s ease-out;
-}
-
-@keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
 }
 
 .wheel-wrapper {
@@ -43,7 +66,6 @@ h1 {
   position: relative;
   width: 500px;
   height: 500px;
-  margin: 0 auto;
 }
 
 #wheelCanvas {
@@ -146,6 +168,7 @@ h1 {
   background-color: #2f3542;
 }
 
-.hidden {
-  display: none;
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
