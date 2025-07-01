@@ -68,7 +68,6 @@ spinButton.onclick = () => {
 
   const extraRotation = 360 * 5 + Math.floor(Math.random() * 360);
   currentRotation += extraRotation;
-
   canvas.style.transform = `rotate(${currentRotation}deg)`;
 
   setTimeout(() => {
@@ -95,3 +94,4 @@ spinAgainBtn.onclick = () => {
   popup.classList.add("hidden");
   resultText.textContent = "";
 };
+
