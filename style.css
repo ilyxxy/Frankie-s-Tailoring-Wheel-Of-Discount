@@ -5,12 +5,18 @@ body {
   background-size: cover;
   font-family: 'Poppins', sans-serif;
   color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .overlay {
   text-align: center;
   backdrop-filter: blur(4px);
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
 h1 {
@@ -34,6 +40,8 @@ h1 {
   transform: rotate(0deg);
   transition: transform 5s cubic-bezier(0.33, 1, 0.68, 1);
   transform-origin: center;
+  display: block;
+  margin: 0 auto;
 }
 
 .pointer {
