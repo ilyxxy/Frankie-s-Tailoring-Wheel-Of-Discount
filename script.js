@@ -4,6 +4,7 @@ const spinButton = document.getElementById("spinButton");
 const resultText = document.getElementById("resultText");
 const popup = document.getElementById("popup");
 const popupPrize = document.getElementById("popupPrize");
+const spinAgainBtn = document.getElementById("spinAgainBtn");
 
 const segments = [
   { label: "5% Discount", color: "#1a1a2e", weight: 5 },
@@ -19,7 +20,7 @@ let angles = [];
 function drawWheel() {
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
-  const radius = 270;
+  const radius = 220;
   let startAngle = 0;
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -79,8 +80,6 @@ spinButton.onclick = () => {
       if (normalized >= angleSum && normalized < angleSum + segDeg) {
         const result = segments[i].label;
         resultText.textContent = `🎉 You got: ${result} 🎉`;
-
-        // 🎀 Show popup
         popupPrize.textContent = result;
         popup.classList.remove("hidden");
         break;
@@ -90,4 +89,9 @@ spinButton.onclick = () => {
 
     spinButton.style.pointerEvents = "auto";
   }, 5200);
+};
+
+spinAgainBtn.onclick = () => {
+  popup.classList.add("hidden");
+  resultText.textContent = "";
 };
