@@ -5,6 +5,14 @@ const resultText = document.getElementById("resultText");
 const popup = document.getElementById("popup");
 const popupPrize = document.getElementById("popupPrize");
 const spinAgainBtn = document.getElementById("spinAgainBtn");
+const continueButton = document.getElementById("continueButton");
+const formSection = document.getElementById("formSection");
+const wheelSection = document.getElementById("wheelSection");
+
+continueButton.onclick = () => {
+  formSection.classList.add("hidden");
+  wheelSection.classList.remove("hidden");
+};
 
 const segments = [
   { label: "5% Discount", color: "#1a1a2e", weight: 5 },
@@ -15,7 +23,8 @@ const segments = [
 ];
 
 const totalWeight = segments.reduce((sum, seg) => sum + seg.weight, 0);
-let angles = [];
+const numSegments = segments.length;
+const sliceAngle = (2 * Math.PI) / numSegments;
 
 function drawWheel() {
   const centerX = canvas.width / 2;
@@ -24,17 +33,9 @@ function drawWheel() {
   let startAngle = 0;
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  angles = [];
 
-  segments.forEach((seg) => {
-    const sliceAngle = (2 * Math.PI * seg.weight) / totalWeight;
+  segments.forEach((seg, i) => {
     const endAngle = startAngle + sliceAngle;
-
-    angles.push({
-      startDeg: (startAngle * 180) / Math.PI,
-      endDeg: (endAngle * 180) / Math.PI,
-      label: seg.label,
-    });
 
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
@@ -61,31 +62,34 @@ drawWheel();
 
 let currentRotation = 0;
 
+function pickWeightedSegment() {
+  const rand = Math.random() * totalWeight;
+  let sum = 0;
+  for (let i = 0; i < segments.length; i++) {
+    sum += segments[i].weight;
+    if (rand < sum) return i;
+  }
+  return segments.length - 1;
+}
+
 spinButton.onclick = () => {
   spinButton.style.pointerEvents = "none";
   resultText.textContent = "";
   popup.classList.add("hidden");
 
-  const extraRotation = 360 * 5 + Math.floor(Math.random() * 360);
-  currentRotation += extraRotation;
+  const pickedIndex = pickWeightedSegment();
+  const segmentRotation = 360 / segments.length;
+  const stopAngle = 360 - (pickedIndex * segmentRotation + segmentRotation / 2);
+  const extraRotation = 360 * 5;
+  currentRotation += extraRotation + stopAngle;
+
   canvas.style.transform = `rotate(${currentRotation}deg)`;
 
   setTimeout(() => {
-    const normalized = (360 - (currentRotation % 360)) % 360;
-
-    let angleSum = 0;
-    for (let i = 0; i < segments.length; i++) {
-      const segDeg = (segments[i].weight / totalWeight) * 360;
-      if (normalized >= angleSum && normalized < angleSum + segDeg) {
-        const result = segments[i].label;
-        resultText.textContent = `🎉 You got: ${result} 🎉`;
-        popupPrize.textContent = result;
-        popup.classList.remove("hidden");
-        break;
-      }
-      angleSum += segDeg;
-    }
-
+    const result = segments[pickedIndex].label;
+    resultText.textContent = `🎉 You got: ${result} 🎉`;
+    popupPrize.textContent = result;
+    popup.classList.remove("hidden");
     spinButton.style.pointerEvents = "auto";
   }, 5200);
 };
@@ -94,4 +98,3 @@ spinAgainBtn.onclick = () => {
   popup.classList.add("hidden");
   resultText.textContent = "";
 };
-
