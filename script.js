@@ -2,6 +2,8 @@ const canvas = document.getElementById("wheelCanvas");
 const ctx = canvas.getContext("2d");
 const spinButton = document.getElementById("spinButton");
 const resultText = document.getElementById("resultText");
+const popup = document.getElementById("popup");
+const popupPrize = document.getElementById("popupPrize");
 
 const segments = [
   { label: "5% Discount", color: "#1a1a2e", weight: 5 },
@@ -61,6 +63,7 @@ let currentRotation = 0;
 spinButton.onclick = () => {
   spinButton.style.pointerEvents = "none";
   resultText.textContent = "";
+  popup.classList.add("hidden");
 
   const extraRotation = 360 * 5 + Math.floor(Math.random() * 360);
   currentRotation += extraRotation;
@@ -74,7 +77,12 @@ spinButton.onclick = () => {
     for (let i = 0; i < segments.length; i++) {
       const segDeg = (segments[i].weight / totalWeight) * 360;
       if (normalized >= angleSum && normalized < angleSum + segDeg) {
-        resultText.textContent = `🎉 You got: ${segments[i].label} 🎉`;
+        const result = segments[i].label;
+        resultText.textContent = `🎉 You got: ${result} 🎉`;
+
+        // 🎀 Show popup
+        popupPrize.textContent = result;
+        popup.classList.remove("hidden");
         break;
       }
       angleSum += segDeg;
