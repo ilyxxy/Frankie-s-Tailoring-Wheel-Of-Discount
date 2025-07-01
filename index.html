@@ -2,35 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Frankie's Tailoring Wheel of Discounts 🎡</title>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Frankie's Tailoring - Wheel of Discount</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-
-  <!-- Google Form Pop-Up -->
-  <div id="formPopup">
-    <div id="formContainer">
-      <h2>Before You Spin, Enter Your Info!</h2>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScckKpPsBZ3bMPY3F2HAp7a77Trr717Pp8Hire5OTEIfJEuoA/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-      <button id="formDoneBtn">I'm Done, Let's Spin!</button>
+  <div class="container">
+    <div class="wheel-container">
+      <div class="pointer"></div>
+      <div class="wheel" id="wheel"></div>
+      <div class="center-circle" id="spin-btn">SPIN</div>
     </div>
+    <p id="result"></p>
   </div>
-
-  <h1>Frankie's Tailoring Wheel of Discounts</h1>
-
-  <div class="wheel-container">
-    <canvas id="wheel" width="500" height="500"></canvas>
-    <button id="spinBtn">SPIN</button>
-  </div>
-
-  <div id="winnerPopup" class="hidden">
-    <h2>🎉 Congrats, <span id="winnerName"></span>! 🎉</h2>
-    <button id="restartBtn">Spin Again</button>
-  </div>
-
   <script src="script.js"></script>
 </body>
 </html>
