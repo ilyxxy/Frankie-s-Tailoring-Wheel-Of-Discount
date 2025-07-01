@@ -17,7 +17,7 @@ let angles = [];
 function drawWheel() {
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
-  const radius = 180;
+  const radius = 270;
   let startAngle = 0;
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
