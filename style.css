@@ -10,6 +10,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .overlay {
@@ -40,8 +41,8 @@ h1 {
 
 .wheel-wrapper {
   position: relative;
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   margin: 0 auto;
 }
 
@@ -103,7 +104,7 @@ h1 {
   text-shadow: 2px 2px 5px black;
 }
 
-/* 🎀 Popup Style */
+/* 🎀 Clean centered popup */
 .popup {
   position: fixed;
   top: 50%;
@@ -131,11 +132,27 @@ h1 {
   color: #444;
 }
 
+#spinAgainBtn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #1a1a2e;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#spinAgainBtn:hover {
+  background-color: #2f3542;
+}
+
 .hidden {
   display: none;
 }
 
-/* Responsive Tweaks */
+/* Responsive */
 @media (max-width: 650px) {
   .wheel-wrapper {
     transform: scale(0.9);
