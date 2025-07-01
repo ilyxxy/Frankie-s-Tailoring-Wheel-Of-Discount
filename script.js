@@ -27,21 +27,18 @@ function drawWheel() {
     const sliceAngle = (2 * Math.PI * seg.weight) / totalWeight;
     const endAngle = startAngle + sliceAngle;
 
-    // Save angle range for later
     angles.push({
       startDeg: (startAngle * 180) / Math.PI,
       endDeg: (endAngle * 180) / Math.PI,
       label: seg.label,
     });
 
-    // Draw slice
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
     ctx.arc(centerX, centerY, radius, startAngle, endAngle);
     ctx.fillStyle = seg.color;
     ctx.fill();
 
-    // Draw label
     ctx.save();
     ctx.translate(centerX, centerY);
     ctx.rotate(startAngle + sliceAngle / 2);
