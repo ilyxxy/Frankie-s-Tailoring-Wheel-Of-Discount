@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Frankie's Tailoring - Wheel of Discount</title>
-  <link rel="stylesheet" href="style.css"/>
+  <title>Frankie's Tailoring Wheel of Discounts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <div class="wheel-container">
+  <div class="overlay">
+    <h1>Frankie's Tailoring Wheel of Discounts</h1>
+    <div class="wheel-wrapper">
       <div class="pointer"></div>
-      <div class="wheel" id="wheel"></div>
-      <div class="center-circle" id="spin-btn">SPIN</div>
+      <canvas id="wheelCanvas" width="400" height="400"></canvas>
+      <div id="spinButton">SPIN</div>
     </div>
-    <p id="result"></p>
+    <p id="resultText"></p>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
