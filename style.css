@@ -9,32 +9,46 @@ body {
   overflow-x: hidden;
 }
 
-/* Form Section */
+/* === FORM SECTION GLOW-UP === */
 .form-section {
   width: 100%;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 60px auto;
   padding: 40px 20px;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
   text-align: center;
+  animation: fadeUp 1s ease;
+}
+
+.form-section iframe {
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  height: 600px;
 }
 
 #continueButton {
-  margin-top: 20px;
-  padding: 12px 24px;
-  font-size: 1rem;
-  background-color: #1a1a2e;
+  margin-top: 30px;
+  padding: 14px 30px;
+  font-size: 1.1rem;
+  background: linear-gradient(145deg, #2f3542, #1a1a2e);
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 30px;
   cursor: pointer;
-  transition: background 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  font-weight: 600;
 }
 
 #continueButton:hover {
-  background-color: #2f3542;
+  background: linear-gradient(145deg, #1a1a2e, #2f3542);
+  transform: scale(1.05);
 }
 
-/* Hide initially */
 .hidden {
   display: none;
 }
