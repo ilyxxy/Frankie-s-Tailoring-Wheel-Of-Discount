@@ -33,6 +33,7 @@ h1 {
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
   transform: rotate(0deg);
   transition: transform 5s cubic-bezier(0.33, 1, 0.68, 1);
+  transform-origin: center;
 }
 
 .pointer {
@@ -46,6 +47,13 @@ h1 {
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { filter: drop-shadow(0 0 5px red); }
+  50% { filter: drop-shadow(0 0 15px red); }
+  100% { filter: drop-shadow(0 0 5px red); }
 }
 
 #spinButton {
@@ -74,4 +82,20 @@ h1 {
   font-size: 1.3rem;
   font-weight: bold;
   text-shadow: 2px 2px 5px black;
+}
+
+@media (max-width: 450px) {
+  .wheel-wrapper {
+    transform: scale(0.9);
+  }
+
+  #spinButton {
+    width: 80px;
+    height: 80px;
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
 }
